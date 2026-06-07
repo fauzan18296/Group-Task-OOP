@@ -61,8 +61,10 @@ class BukuPelajaran(Buku):
                               elif user_action == "2":
                                         self.tampil_info()
                               elif user_action == "3":
-                                        pass
+                                        os.system('cls' if os.name == 'nt' else 'clear')
+                                        print("Fungsi hapus buku belum diimplementasikan.")
                               elif user_action == "4":
+                                        os.system('cls' if os.name == 'nt' else 'clear')
                                         print("Kembali ke menu utama.")
                                         break
                               else:
@@ -78,23 +80,99 @@ class BukuPelajaran(Buku):
                     print("="*20,"Informasi Buku Pelajaran", "="*20)
                     for index, judul in enumerate(self.judul, start=0):
                               print(f"{index + 1}. {judul} oleh {self.penulis[index]} ({self.tahun[index]}) - Mata Pelajaran: {self.mata_pelajaran[index]}")
-                    print("="*70)
+                    print("="*57)
 
 class Novel(Buku):
           def __init__(self, judul: list[str], penulis: list[str], tahun: list[int], genre: list[str]):
                     super().__init__(judul, penulis, tahun)
                     self.genre = genre
+                    
+          def opsi_user_action(self):
+                    while True:
+                              print("\nAnda berada di jenis Buku Novel.")
+                              print("Opsi aksi yang tersedia:")
+                              print("1. Tambahkan Novel")
+                              print("2. Tampilkan Informasi Novel")
+                              print("3. Hapus Novel")
+                              print("4. Keluar")
+                    
+                              user_action = input("Masukkan aksi yang ingin dilakukan (1-4): ")
+                              if user_action == "1":
+                                        judul = input("Masukkan judul novel: ")
+                                        penulis = input("Masukkan penulis novel: ")
+                                        tahun = int(input("Masukkan tahun terbit novel: "))
+                                        genre = input("Masukkan genre novel: ")
+                                        self.tambah_novel(judul, penulis, tahun, genre)
+                                        print("Novel berhasil ditambahkan.")
+                              elif user_action == "2":
+                                        self.tampil_info()
+                              elif user_action == "3":
+                                        os.system('cls' if os.name == 'nt' else 'clear')
+                                        print("Fungsi hapus novel belum diimplementasikan.")
+                              elif user_action == "4":
+                                        os.system('cls' if os.name == 'nt' else 'clear')
+                                        print("Kembali ke menu utama.")
+                                        break
+                              else:
+                                        print("Opsi tidak valid. Silakan coba lagi.")
+                                        return self.opsi_user_action()
+          def tambah_novel(self, judul: str, penulis: str, tahun: int, genre: str):
+                    self.judul.append(judul)
+                    self.penulis.append(penulis)
+                    self.tahun.append(tahun)
+                    self.genre.append(genre)
           
           def tampil_info(self):
-                    print(f"{self.judul} oleh {self.penulis} ({self.tahun}) - Genre: {self.genre}")
-          
+                    print("="*20,"Informasi Novel", "="*20)
+                    for index, judul in enumerate(self.judul, start=0):
+                              print(f"{index + 1}. {judul} oleh {self.penulis[index]} ({self.tahun[index]}) - Genre: {self.genre[index]}")
+                    print("="*57)
+
 class Majalah(Buku):
           def __init__(self, judul: list[str], penulis: list[str], tahun: list[int], edisi: list[str]):
                     super().__init__(judul, penulis, tahun)
                     self.edisi = edisi
+                    
+          def opsi_user_action(self):
+                    while True:
+                              print("\nAnda berada di jenis Buku Majalah.")
+                              print("Opsi aksi yang tersedia:")
+                              print("1. Tambahkan Majalah")
+                              print("2. Tampilkan Informasi Majalah")
+                              print("3. Hapus Majalah")
+                              print("4. Keluar")
+                    
+                              user_action = input("Masukkan aksi yang ingin dilakukan (1-4): ")
+                              if user_action == "1":
+                                        judul = input("Masukkan judul majalah: ")
+                                        penulis = input("Masukkan penulis majalah: ")
+                                        tahun = int(input("Masukkan tahun terbit majalah: "))
+                                        edisi = input("Masukkan edisi majalah: ")
+                                        self.tambah_majalah(judul, penulis, tahun, edisi)
+                                        print("Majalah berhasil ditambahkan.")
+                              elif user_action == "2":
+                                        self.tampil_info()
+                              elif user_action == "3":
+                                        os.system('cls' if os.name == 'nt' else 'clear')
+                                        print("Fungsi hapus majalah belum diimplementasikan.")
+                              elif user_action == "4":
+                                        os.system('cls' if os.name == 'nt' else 'clear')
+                                        print("Kembali ke menu utama.")
+                                        break
+                              else:
+                                        print("Opsi tidak valid. Silakan coba lagi.")
+                                        return self.opsi_user_action()
+          def tambah_majalah(self, judul: str, penulis: str, tahun: int, edisi: str):
+                    self.judul.append(judul)
+                    self.penulis.append(penulis)
+                    self.tahun.append(tahun)
+                    self.edisi.append(edisi)
           
           def tampil_info(self):
-                    print(f"{self.judul} oleh {self.penulis} ({self.tahun}) - Edisi: {self.edisi}")
+                    print("="*20,"Informasi Majalah", "="*20)
+                    for index, judul in enumerate(self.judul, start=0):
+                              print(f"{index + 1}. {judul} oleh {self.penulis[index]} ({self.tahun[index]}) - Edisi: {self.edisi[index]}")
+                    print("="*57)
 
 
 buku_pelajaran = BukuPelajaran(judul=[], penulis=[], tahun=[], mata_pelajaran=[])
