@@ -1,3 +1,4 @@
+from operator import index
 import os
 class Buku:
           def __init__(self, judul: list[str], penulis: list[str], tahun: list[int]):
@@ -62,7 +63,12 @@ class BukuPelajaran(Buku):
                                         self.tampil_info()
                               elif user_action == "3":
                                         os.system('cls' if os.name == 'nt' else 'clear')
-                                        print("Fungsi hapus buku belum diimplementasikan.")
+                                        self.tampil_info()
+                                        try:
+                                                  user_delete_book = int(input("Masukkan nomor buku yang ingin dihapus: ")) - 1  # Mengurangi 1 untuk mendapatkan indeks yang benar
+                                                  self.hapus_buku(user_delete_book)
+                                        except ValueError:
+                                                  print("Input tidak valid. Silakan masukkan nomor buku yang benar.")
                               elif user_action == "4":
                                         os.system('cls' if os.name == 'nt' else 'clear')
                                         print("Kembali ke menu utama.")
@@ -75,7 +81,16 @@ class BukuPelajaran(Buku):
                     self.penulis.append(penulis)
                     self.tahun.append(tahun)
                     self.mata_pelajaran.append(mata_pelajaran)
-          
+          def hapus_buku(self, index: int):
+                    if 0 <= index < len(self.judul):
+                              self.judul.pop(index)
+                              self.penulis.pop(index)
+                              self.tahun.pop(index)
+                              self.mata_pelajaran.pop(index)
+                              self.tampil_info()
+                              print("Buku berhasil dihapus.")
+                    else:
+                              print("Indeks tidak valid. Tidak ada buku yang dihapus.")
           def tampil_info(self):
                     print("="*20,"Informasi Buku Pelajaran", "="*20)
                     for index, judul in enumerate(self.judul, start=0):
@@ -108,7 +123,11 @@ class Novel(Buku):
                                         self.tampil_info()
                               elif user_action == "3":
                                         os.system('cls' if os.name == 'nt' else 'clear')
-                                        print("Fungsi hapus novel belum diimplementasikan.")
+                                        try:
+                                                  user_delete_book = int(input("Masukkan nomor novel yang ingin dihapus: ")) - 1  # Mengurangi 1 untuk mendapatkan indeks yang benar
+                                                  self.hapus_buku(user_delete_book)
+                                        except ValueError:
+                                                  print("Input tidak valid. Silakan masukkan nomor novel yang benar.")
                               elif user_action == "4":
                                         os.system('cls' if os.name == 'nt' else 'clear')
                                         print("Kembali ke menu utama.")
@@ -121,6 +140,17 @@ class Novel(Buku):
                     self.penulis.append(penulis)
                     self.tahun.append(tahun)
                     self.genre.append(genre)
+                    
+          def hapus_buku(self, index: int):
+                    if 0 <= index < len(self.judul):
+                              self.judul.pop(index)
+                              self.penulis.pop(index)
+                              self.tahun.pop(index)
+                              self.genre.pop(index)
+                              self.tampil_info()
+                              print("Buku berhasil dihapus.")
+                    else:
+                              print("Indeks tidak valid. Tidak ada buku yang dihapus.")
           
           def tampil_info(self):
                     print("="*20,"Informasi Novel", "="*20)
@@ -154,7 +184,11 @@ class Majalah(Buku):
                                         self.tampil_info()
                               elif user_action == "3":
                                         os.system('cls' if os.name == 'nt' else 'clear')
-                                        print("Fungsi hapus majalah belum diimplementasikan.")
+                                        try:
+                                                  user_delete_magazine = int(input("Masukkan nomor majalah yang ingin dihapus: ")) - 1
+                                                  self.hapus_buku(user_delete_magazine)
+                                        except ValueError:
+                                                  print("Input tidak valid. Silakan masukkan nomor majalah yang benar.")
                               elif user_action == "4":
                                         os.system('cls' if os.name == 'nt' else 'clear')
                                         print("Kembali ke menu utama.")
@@ -167,6 +201,17 @@ class Majalah(Buku):
                     self.penulis.append(penulis)
                     self.tahun.append(tahun)
                     self.edisi.append(edisi)
+          
+          def hapus_buku(self, index: int):
+                    if 0 <= index < len(self.judul):
+                              self.judul.pop(index)
+                              self.penulis.pop(index)
+                              self.tahun.pop(index)
+                              self.edisi.pop(index)
+                              self.tampil_info()
+                              print("Buku berhasil dihapus.")
+                    else:
+                              print("Indeks tidak valid. Tidak ada buku yang dihapus.")
           
           def tampil_info(self):
                     print("="*20,"Informasi Majalah", "="*20)
