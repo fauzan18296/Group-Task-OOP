@@ -1,4 +1,3 @@
-from operator import index
 import os
 class Buku:
           def __init__(self, judul: list[str], penulis: list[str], tahun: list[int]):
